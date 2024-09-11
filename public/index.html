@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    </body>
+    <script src="button.js"></script>
+    <script src="article.js"></script>
+    <script src="feed.js"></script>
+    <script>
+        let feed = document.createElement("sga-feed")
+        feed.setArticles([
+            newArticle({
+                title: "Contratações Públicas", 
+                text: "Descrição:\n" +
+                "Com base no principio da publicação afim dá transparência nas" +
+                "decisões tomadas pelo poder público, divulgando assim as ações " + 
+                "desenvolvidas pelo Administração Pública.\n" +
+                "Objetivo:\n" +
+                "Dá transparência e visibilidade das contratações realizadas pela SEAD.", 
+                authorName: "Isabela Soares"}),
+            newArticle({
+                title: "Passagens concedidas", 
+                text:"Descrição:\nA fim de prestar contas das passagens emitidas para os "+
+                "servidores da SEAD e para os órgãos externos." +
+                "Objetivo:\n" +
+                "Realizar o controle dos contratos para emissão de passagens aéreas. Processo" + 
+                "do contrato das passagens nº 00002.004253/2024 - 18.", 
+                authorName: "Liviane Mendes"}),
+            newArticle({
+                title: "Suprimento de fundos",
+                text: "Descrição:\n" +
+                "Despesa urgente e de pronto pagamento.\n"+
+                "Objetivo:\n" +
+                "Atender as necessidade de com despesas de caráter urgente da SEAD.",
+                authorName: "Laércio Pinheiro",
+            }),
+            newArticle({
+                title: "Concessão de Diárias",
+                text: "Descrição:\n" +
+                "Despesa urgente e de pronto pagamento.\n" +
+                "Objetivo:\n" +
+                "As diárias destinam-se a indenizar o agente público ou colaborador " + 
+                "eventual pelas despesas extraordinárias com hospedagem, alimentação " + 
+                "e locomoção urbana, realizadas durante o período de deslocamento no " + 
+                "interesse da administração pública.",
+                authorName: "Laércio Pinheiro"
+            })
+        ])
+        document.body.appendChild(feed)
+    </script>
+</html>
