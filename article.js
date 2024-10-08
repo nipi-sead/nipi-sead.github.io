@@ -192,6 +192,7 @@ class Article extends HTMLElement{
     }
 
     render() {
+        console.log(this.record);
         let vals = this.record.vals();
         this.title = vals.title;
         this.text = vals.text;
@@ -204,5 +205,6 @@ window.customElements.define("sga-article", Article)
 function newArticle(record) {
     let article = document.createElement("sga-article");
     article.bind(record);
+    article.render();
     return article;
 }

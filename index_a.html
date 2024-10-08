@@ -18,6 +18,7 @@
         let session = new Session();
         let feed = document.createElement("sga-feed");
         session.filter("GET", "/article", {}, record => {
+            console.log(record);
             feed.bind(record);
             feed.render();
         })

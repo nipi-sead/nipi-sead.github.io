@@ -75,21 +75,32 @@
             </div>
             <div class="right" style="flex: 3">
                 <h2 style="margin: 4px 16px 8px 16px; text-align: center; background-color: #F2B705; padding: 8px;">
-                    SGA - Boletim
+                    SGA - Boletim / SEAD
                 </h2>
-                <div id="financeiro" style="border: 2px solid black; padding: 8px 16px; margin-bottom: 16px;">
+                <div id="superintendencia" style="border: 2px solid black; padding: 8px 16px; overflow-wrap: break-word; margin-bottom: 16px;">
                     <header>
-                        <h1>Diretoria Financeira</h1>
+                        <h1>Superintendência de Gestão Administrativa - SGA</h1>
                     </header>
                     <main>
+                        <p>Superintendente: Lucas Lopes de Araújo</p>
                         <p>Ir para a página >></p>
                     </main>
                 </div>
-                <div id="superintendencia" style="border: 2px solid black; padding: 8px 16px; overflow-wrap: break-word;">
+                <div id="disp" style="border: 2px solid black; padding: 8px 16px; margin-bottom: 16px;">
                     <header>
-                        <h1>Superintendência</h1>
+                        <h1>Diretoria de Inovação em Serviços Públicos - DISP</h1>
                     </header>
                     <main>
+                        <p>Diretor: Francisco Guedes</p>
+                        <p>Ir para a página >></p>
+                    </main>
+                </div>
+                <div id="financeiro" style="border: 2px solid black; padding: 8px 16px; margin-bottom: 16px;">
+                    <header>
+                        <h1>Diretoria de Planejamento e Finanças - DFIN</h1>
+                    </header>
+                    <main>
+                        <p>Diretor: Laérco Pinheiro</p>
                         <p>Ir para a página >></p>
                     </main>
                 </div>
@@ -106,6 +117,9 @@
         });
         document.querySelector("#superintendencia").addEventListener("click", () => {
             window.location.href = "superintendencia.html"
+        })
+        document.querySelector("#disp").addEventListener("click", () => {
+            window.location.href = "disp.html"
         })
     </script>
 </html>

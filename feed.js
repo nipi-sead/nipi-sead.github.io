@@ -161,14 +161,19 @@ class SgaFeed extends HTMLElement {
     }
 
     render() {
+        this._articles = [];
         this.record.indexAll().forEach((r, index) => {
             let article = newArticle(r);
             article.addActionOnExpand(() => {
                 this.closeArticles();
                 this._active = index;
             })
-            this._articleList.appendChild(newArticle(r))
+            this._articleList.appendChild(article);
+            article.render();
+            this._articles.push(article);
         })
+
+        this._active = -1;
     }
 }
 

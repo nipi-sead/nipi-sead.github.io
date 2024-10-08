@@ -17,6 +17,7 @@
 function makeRequest(method, url, body, callback) {
     callback([
         {
+            id: 1,
             title: "Suprimento de fundos",
             text: "Descrição:\n" +
             "Despesa urgente e de pronto pagamento.\n"+
@@ -25,6 +26,7 @@ function makeRequest(method, url, body, callback) {
             authorName: "Laércio Pinheiro",
         },
         {
+            id: 2,
             title: "Concessão de Diárias",
             text: "Descrição:\n" +
             "Despesa urgente e de pronto pagamento.\n" +
@@ -36,6 +38,7 @@ function makeRequest(method, url, body, callback) {
             authorName: "Laércio Pinheiro"
         },
         {
+            id: 3,
             title: "Passagens concedidas", 
             text:"Descrição:\nA fim de prestar contas das passagens emitidas para os "+
             "servidores da SEAD e para os órgãos externos." +
@@ -69,11 +72,12 @@ class Registry {
 
 class Recordset {
 
-    constructor(method, url, session, filter, ids) {
+    constructor(method, url, session, filter, ...ids) {
         this.method = method;
         this.url = url;
         this.session = session;
         this.registry = this.session.registry;
+        this.filter = filter;
         this.ids = ids;
     }
 
@@ -83,24 +87,24 @@ class Recordset {
             this.url,
             this.session,
             {id: this.ids[i]},
-            this.registry.get(this.ids[i]))
+            this.ids[i])
     }
 
     indexMany(start, end) {
-        let records = []
+        let ids = []
         for (let i = start; i < end; i++) {
-            records.push(this.registry.get(this.ids[i]))
+            ids.push(this.ids[i])
         }
         return new Recordset(
             this.method,
             this.url,
             this.session,
             this.filter,
-            ...records)
+            ...ids)
     }
 
     indexAll() {
-        return this.indexMany(0, this.ids.lenght);
+        return this.indexMany(0, this.ids.length);
     }
 
     get(prop) {
@@ -115,6 +119,14 @@ class Recordset {
         this.session._filter(this.method, this.url, this.filter, ids => {
             this.ids = ids;
         })
+    }
+
+    forEach(f) {
+        console.log(this.ids);
+        let ids = this.ids;
+        for (let i = 0; i < ids.length; i++) {
+            f(new Recordset(this.method, this.url, this.session, {id: ids[i]}, ids[i]), i);
+        }
     }
 }
 
@@ -154,7 +166,7 @@ class Session {
 
     filter(method, url, data, callback) {
         this._filter(method, url, data, ids => {
-            callback(new Recordset(method, url, this, data, ids));
+            callback(new Recordset(method, url, this, data, ...ids));
         })
     }
 }
