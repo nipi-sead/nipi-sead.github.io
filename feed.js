@@ -99,6 +99,13 @@ class SgaFeed extends HTMLElement {
 
     }
 
+    // load(method, url, session) {
+    //     this.method = method
+    //     this.url = url
+    //     this.session = session
+    //     this.session.filter(method, url, {limit: 20, offset: 20}, recordset =>)
+    // }
+
     setArticles(articles) {
         this._articleList.innerHTML = ""
         articles.forEach((article, index) => {
@@ -143,6 +150,25 @@ class SgaFeed extends HTMLElement {
         if (this._active == -1) return;
         this._articles[this._active].collapse()
         this._active = -1
+    }
+
+    bind(record) {
+        this.record = record;
+    }
+
+    load() {
+        this.record.load();
+    }
+
+    render() {
+        this.record.indexAll().forEach((r, index) => {
+            let article = newArticle(r);
+            article.addActionOnExpand(() => {
+                this.closeArticles();
+                this._active = index;
+            })
+            this._articleList.appendChild(newArticle(r))
+        })
     }
 }
 

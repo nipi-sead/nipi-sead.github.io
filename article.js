@@ -182,14 +182,27 @@ class Article extends HTMLElement{
     addActionOnExpand(func) {
         this._onExpand.push(func)
     }
+    
+    bind(record) {
+        this.record = record;
+    }
+
+    reload() {
+        this.record.load();
+    }
+
+    render() {
+        let vals = this.record.vals();
+        this.title = vals.title;
+        this.text = vals.text;
+        this.authorName = vals.authorName;
+    }
 }
 
 window.customElements.define("sga-article", Article)
 
-function newArticle(args) {
-    let article = document.createElement("sga-article")
-    article.title = args.title
-    article.text = args.text
-    article.authorName = args.authorName
-    return article
+function newArticle(record) {
+    let article = document.createElement("sga-article");
+    article.bind(record);
+    return article;
 }

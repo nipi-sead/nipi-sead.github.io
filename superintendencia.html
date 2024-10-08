@@ -49,7 +49,7 @@
 
         .all {
             height: 100vh;
-            max-height: 100vh;
+            max-height: 100hv;
             overflow: hidden;
         }
 
@@ -70,42 +70,49 @@
 
         </style>
         <div class="all" style="display: flex;">
-            <div class="faixa" style="flex: 1; background-color: #F2B705; margin-right: 16px;">
-                <h1 id="boletim" style="writing-mode: tb-rl; transform: rotate(-180deg); height: 100%; width: 100%; margin-left: -8px; color: #F7F1FD;">BOLETIM</h1>
+          <div class="faixa" style="flex: 1; background-color: #F2B705; margin-right: 16px;">
+            <h1 id="boletim" style="writing-mode: tb-rl; transform: rotate(-180deg); height: 100%; width: 100%; margin-left: -8px; color: #F7F1FD;">BOLETIM</h1>
             </div>
             <div class="right" style="flex: 3">
+
                 <h2 style="margin: 4px 16px 8px 16px; text-align: center; background-color: #F2B705; padding: 8px;">
-                    SGA - Boletim
+                    Superintendência
                 </h2>
-                <div id="financeiro" style="border: 2px solid black; padding: 8px 16px; margin-bottom: 16px;">
+                <div style="border: 2px solid black; padding: 8px 16px">
                     <header>
-                        <h1>Diretoria Financeira</h1>
+                        <h1>Contratações Públicas</h1>
                     </header>
                     <main>
-                        <p>Descrição:</p>
-                    </main>
-                </div>
-                <div id="superintendencia" style="border: 2px solid black; padding: 8px 16px; overflow-wrap: break-word;">
-                    <header>
-                        <h1>Superintendência</h1>
-                    </header>
-                    <main>
-                        <p>Descrição:</p>
-                    </main>
-                </div>
-                <div style="text-align: right;">
-                    <img src="sead.png" height="100px" style="text-align:right;"/>
-                </div>
+                    <p>Descrição:</p>
+                    <p>Com base no principio da publicação afim dá transparência nas decisões tomadas pelo poder público, divulgando assim as ações desenvolvidas pelo Administração Pública.
+                    </p>
+                    <p>Objetivo:</p>
+                    <p>Dá transparência e visibilidade das contratações realizadas pela SEAD. 
+                    </p>
+                </main>
+            </div>
+            <footer style="text-align: right;">
+                <h3>Publicado por: Isabela Soares</h3>
+            </footer>
+            <div style="border: 2px solid black; padding: 8px 16px">
+                <header>
+                    <h1>Passagens Concedidas</h1>
+                </header>
+                <main>
+                    <p>Descrição:</p>
+                    <p>A fim de prestar contas das passagens emitidas para os servidores da SEAD e para os órgãos externos.
+                    </p>
+                    <p>Objetivo:</p>
+                    <p>Realizar o controle dos contratos para emissão de passagens aéreas. Processo do contrato das passagens nº 00002.004253/2024 - 18.</p>
+                </main>
+            </div>
+            <footer style="text-align: right;">
+                <h3>Publicado por: Liviane Mendes</h3>
+            </footer>
+            <div style="text-align: right;">
+              <img src="sead.png" height="100px" style="text-align:right;"/>
             </div>
         </div>
+    </div>
     </body>
-
-    <script>
-        document.querySelector("#financeiro").addEventListener("click", () => {
-            window.location.href = "financeiro.html"
-        });
-        document.querySelector("#superintendencia").addEventListener("click", () => {
-            window.location.href = "superintendencia.html"
-        })
-    </script>
 </html>

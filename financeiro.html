@@ -49,7 +49,7 @@
 
         .all {
             height: 100vh;
-            max-height: 100vh;
+            max-height: 100hv;
             overflow: hidden;
         }
 
@@ -70,42 +70,47 @@
 
         </style>
         <div class="all" style="display: flex;">
-            <div class="faixa" style="flex: 1; background-color: #F2B705; margin-right: 16px;">
-                <h1 id="boletim" style="writing-mode: tb-rl; transform: rotate(-180deg); height: 100%; width: 100%; margin-left: -8px; color: #F7F1FD;">BOLETIM</h1>
+          <div class="faixa" style="flex: 1; background-color: #F2B705; margin-right: 16px;">
+            <h1 id="boletim" style="writing-mode: tb-rl; transform: rotate(-180deg); height: 100%; width: 100%; margin-left: -8px; color: #F7F1FD;">BOLETIM</h1>
             </div>
             <div class="right" style="flex: 3">
+
                 <h2 style="margin: 4px 16px 8px 16px; text-align: center; background-color: #F2B705; padding: 8px;">
-                    SGA - Boletim
+                    Diretoria Financeira
                 </h2>
-                <div id="financeiro" style="border: 2px solid black; padding: 8px 16px; margin-bottom: 16px;">
+                <div style="border: 2px solid black; padding: 8px 16px">
                     <header>
-                        <h1>Diretoria Financeira</h1>
+                        <h1>Concessão de Diárias</h1>
                     </header>
                     <main>
-                        <p>Descrição:</p>
-                    </main>
-                </div>
-                <div id="superintendencia" style="border: 2px solid black; padding: 8px 16px; overflow-wrap: break-word;">
-                    <header>
-                        <h1>Superintendência</h1>
-                    </header>
-                    <main>
-                        <p>Descrição:</p>
-                    </main>
-                </div>
-                <div style="text-align: right;">
-                    <img src="sead.png" height="100px" style="text-align:right;"/>
-                </div>
+                    <p>Descrição:</p>
+                    <p>Prestar contas e dá visibilidade das diárias pagamento na SEAD.
+                    </p>
+                    <p>Objetivo:</p>
+                    <p>As diárias destinam-se a indenizar o agente público ou colaborador eventual pelas despesas extraordinárias com hospedagem, alimentação e locomoção urbana, realizadas durante o período de deslocamento no interesse da administração pública.</p>
+                </main>
+            </div>
+            <footer style="text-align: right;">
+                <h3>Publicado por: Laércio Pinheiro</h3>
+            </footer>
+            <div style="border: 2px solid black; padding: 8px 16px">
+                <header>
+                    <h1>Suprimento de fundos</h1>
+                </header>
+                <main>
+                    <p>Descrição:</p>
+                    <p>Despesa urgente e de pronto pagamento.</p>
+                    <p>Objetivo:</p>
+                    <p>Atender as necessidade de com despesas de caráter urgente da SEAD.</p>
+                </main>
+            </div>
+            <footer style="text-align: right;">
+                <h3>Publicado por: Laércio Pinheiro</h3>
+            </footer>
+            <div style="text-align: right;">
+              <img src="sead.png" height="100px" style="text-align:right;"/>
             </div>
         </div>
+    </div>
     </body>
-
-    <script>
-        document.querySelector("#financeiro").addEventListener("click", () => {
-            window.location.href = "financeiro.html"
-        });
-        document.querySelector("#superintendencia").addEventListener("click", () => {
-            window.location.href = "superintendencia.html"
-        })
-    </script>
 </html>
