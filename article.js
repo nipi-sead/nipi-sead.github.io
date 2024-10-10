@@ -2,111 +2,34 @@
 const boletimTemplate = document.createElement("template")
 boletimTemplate.innerHTML = `
 <style>
-    h1 {
-        font-size: 42px;
-        font-weight: 600;
-    }
-    h4 {
-        font-size: 28px;
-    }
-    p {
-        font-size: 26px;
+    @media only screen and (max-width: 600px) {
+        h1 {
+            font-size: 36px;
+        }
+
+        p, h2{
+            font-size: 18px;
+        }
+
+        h3 {
+            font-size: 16px;
+        }
     }
 
-    html, body {
-        margin: 0;
-        padding: 0px;
-        max-width: 100%;
-    }
-
-    body {
-        
-        background-image: url("26-White-Paper-Background-Textures-Square-preview-9.jpg");
-        background-repeat: repeat;
-        background-size: 900px 900px;
-    }
-    header, main, footer {
-        font-family: "Rubik", sans-serif;
-        padding: 0;
-        width: 100%;
-    }
-
-    h1 {
-        margin: 0;
-        color: #444444;
-    }
-    h4 {
-        font-weight: 500;
-        color: #747474;
-        margin: 0;
-    }
-    p {
-        color: #262626;
-        font-family: 'Noto Sans', Times, serif;
-        text-indent: 2rem;
-        text-align: justify;
-    }
-
-    header {
-        margin-top: 32px;
-    }
-
-    .sead-logo {
-        right: 0;
-        width: 350px;
-        height: 700px;
-        position: absolute;
-        background-image: url("logo-dark.png");
-        opacity: 0.17;
-        background-repeat: no-repeat;
-        background-position-x: right;
-        background-size: 360px;
-        background-blend-mode: overlay;
-    }
-
-    .dotted-border {
-        height: 1px; 
-        border-bottom: 4px solid rgb(143, 143, 143);
-        margin-top: 2px;
-    }
-
-    .solid-border {
-        height: 1px; 
-        border-bottom: 6px solid rgb(147, 147, 147); 
-        margin-top: 4px;
-    }
-
-    .headline {
-        padding: 0 32px;
-        margin-bottom: 16px;
-    }
-
-    main, footer {
-        display: none;
-        padding: 0px 32px;
-        width: calc(100% - 64px);
-    }
-
-    footer {
-        border-bottom: 4px groove black;
+    h1, h3, p {
+        font-family: 'Rubik', sans-serif;
     }
 </style>
-<div>
+<div style="border: 2px solid black; padding: 0px">
     <header>
-        <div class="headline">
-            <h1 id="title"></h1>
-        </div>
-        <div class="dotted-border">
-        </div>
-        <div class="solid-border">
-        </div>
+        <h1 style="padding: 8px 16px; margin: 0px;" id="title"></h1>
     </header>
-    <main>
+    <main id="body" style="padding: 8px 16px;">
     </main>
-    <footer>
-        <p style="text-align: right; font-style: italic;">Publicado por: <span id="author_name"></span></p>
-    </footer>
 </div>
+<footer style="text-align: right;">
+    <h3>Publicado por: <span id="author_name"></span></h3>
+</footer>
 `
 
 class Article extends HTMLElement{
@@ -118,7 +41,7 @@ class Article extends HTMLElement{
         this._isCollapsed = false
         this._header = this.shadowRoot.querySelector("header")
         this._authorName = this.shadowRoot.querySelector('#author_name')
-        this._text = this.shadowRoot.querySelector("main")
+        this._body = this.shadowRoot.querySelector("#body")
         this._title = this.shadowRoot.querySelector("#title")
         this._footer = this.shadowRoot.querySelector("footer")
         this._onExpand = []
@@ -146,7 +69,7 @@ class Article extends HTMLElement{
 
     get text() {
         t = ""
-        this._text.querySelectorAll("p").forEach(element => {
+        this._body.querySelectorAll("p").forEach(element => {
             t += element.innerHTML
         });
 
@@ -154,9 +77,9 @@ class Article extends HTMLElement{
     }
 
     set text(value) {
-        this._text.innerHTML = ""
+        this._body.innerHTML = ""
         value.split("\n").forEach(element => {
-            this._text.innerHTML += `<p>${element}</p>`
+            this._body.innerHTML += `<p>${element}</p>`
         })
     }
 
@@ -170,13 +93,13 @@ class Article extends HTMLElement{
 
     expand() {
         this._onExpand.forEach(func => func())
-        this._text.style.display = "block"
+        this._body.style.display = "block"
         this._footer.style.display = "block"
     }
 
     collapse() {
-        this._text.style.display = "none"
-        this._footer.style.display = "none"
+        this._body.style.display = "none"
+        // this._footer.style.display = "none"
     }
 
     addActionOnExpand(func) {
@@ -192,7 +115,6 @@ class Article extends HTMLElement{
     }
 
     render() {
-        console.log(this.record);
         let vals = this.record.vals();
         this.title = vals.title;
         this.text = vals.text;

@@ -3,56 +3,74 @@ const feedTemplate = document.createElement("template")
 feedTemplate.innerHTML = `
 <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"/>
 <style>
-.article-list {
-    width: 100%;
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 32px;
+    }
+    .all {
+        width: 100%;
+        max-width: 100%;
+    }
+    h1 {
+        font-size: 36px;
+    }
+
+    p, h2{
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+    .faixa {
+        max-width: 50px;
+    }
 }
 
-.date-picker {
-    margin-top: 8px;
-    width: 100%;
-    height: 56px;
-    border: 2px solid #7b7207;
-    box-shadow: -4px -4px 8px 1px rgba(0, 0, 0, 0.2),
-                4px 4px 8px 1px rgba(255, 255, 255, 1),
-                4px 4px 8px 1px rgba(0, 0, 0, 0.1) inset,
-                -4px -4px 8px 1px rgba(0, 0, 0, 0.1) inset;
-    border-radius: 8px;
-    background-color: rgb(169, 169, 5);
+@media only screen and (min-width: 1000px) {
+    .all {
+        margin: auto;
+        width: 100%;
+        max-width: 900px; 
+    }
+
+    #boletim {
+        font-size: 100px;
+    }
+
+    .faixa {
+        max-width: 150px;;
+    }
 }
 
-.date-picker-bg {
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
-    margin: 4px;
-    background-color: rgb(170, 170, 52);
-    border-radius: 8px;;
+h1, h2, p {
+    font-family: 'Rubik', sans-serif;
 }
+    .right {
+        max-height: 100%;
+        overflow-y: scroll;
+        margin-right: 16px;
+    }
 
-.highlight {
-    margin-top: 4px;
-    height: 16px;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.535);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    opacity: 0.4;
-    /* border-radius: 8px; */
-    mix-blend-mode: lighten;
-}
-
-.btn-nav {
-    display:  flex;
-}
+    .all {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+    }
 </style>
-<div class="article-list">
-</div>
-<div class="option-menu" style="width: 100%; font-size: 24px;">
-    <div class="date-picker">
-        <div class="date-picker-bg">
-            <div class="highlight"></div>
-        </div>
+<div class="all" style="display: flex;">
+    <div class="faixa" style="flex: 1; background-color: #F2B705; margin-right: 16px;">
+        <h1 id="boletim" style="writing-mode: tb-rl; transform: rotate(-180deg); height: 100%; width: 100%; margin-left: -8px; color: #F7F1FD;">BOLETIM</h1>
     </div>
-    <div class="btn-nav">
+    <div class="right" style="flex: 3">
+        <h2 style="margin: 4px 16px 8px 16px; text-align: center; background-color: #F2B705; padding: 8px;">
+            SGA - Boletim / SEAD
+        </h2>
+        <div id="article-list">
+        </div>
+        <div style="text-align: right; position: absolute; bottom: 0; right: 0;">
+            <img src="sead.png" height="70px" style="text-align:right;"/>
+        </div>
     </div>
 </div>
 `
@@ -65,7 +83,7 @@ class SgaFeed extends HTMLElement {
         this.shadowRoot.appendChild(feedTemplate.content.cloneNode(true))
         this._active = -1
         this._articles = []
-        this._articleList = this.shadowRoot.querySelector(".article-list")
+        this._articleList = this.shadowRoot.querySelector("#article-list")
     }
 
     connectedCallback() {

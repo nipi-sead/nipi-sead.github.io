@@ -15,39 +15,15 @@
 // }
 
 function makeRequest(method, url, body, callback) {
-    callback([
-        {
-            id: 1,
-            title: "Suprimento de fundos",
-            text: "Descrição:\n" +
-            "Despesa urgente e de pronto pagamento.\n"+
-            "Objetivo:\n" +
-            "Atender as necessidade de com despesas de caráter urgente da SEAD.",
-            authorName: "Laércio Pinheiro",
-        },
-        {
-            id: 2,
-            title: "Concessão de Diárias",
-            text: "Descrição:\n" +
-            "Despesa urgente e de pronto pagamento.\n" +
-            "Objetivo:\n" +
-            "As diárias destinam-se a indenizar o agente público ou colaborador " + 
-            "eventual pelas despesas extraordinárias com hospedagem, alimentação " + 
-            "e locomoção urbana, realizadas durante o período de deslocamento no " + 
-            "interesse da administração pública.",
-            authorName: "Laércio Pinheiro"
-        },
-        {
-            id: 3,
-            title: "Passagens concedidas", 
-            text:"Descrição:\nA fim de prestar contas das passagens emitidas para os "+
-            "servidores da SEAD e para os órgãos externos." +
-            "Objetivo:\n" +
-            "Realizar o controle dos contratos para emissão de passagens aéreas. Processo" + 
-            "do contrato das passagens nº 00002.004253/2024 - 18.", 
-            authorName: "Liviane Mendes"
-        },
-    ])
+    callback({
+        id: 1,
+        title: "Suprimento de fundos",
+        text: "Descrição:\n" +
+        "Despesa urgente e de pronto pagamento.\n"+
+        "Objetivo:\n" +
+        "Atender as necessidade de com despesas de caráter urgente da SEAD.",
+        authorName: "Laércio Pinheiro",
+    })
 }
 
 class Registry {
@@ -137,14 +113,14 @@ class Session {
         this.registry = new Registry();
     }
     
-    create(method, url, data) {
+    create(method, url, data, callback) {
         makeRequest(method, url, data, (obj) => {
             this.registry.add(obj)
             callback(new Recordset(method, url, this, {id: obj.id}, obj.id));
         })
     }
     
-    update(method, url, id, data) {
+    update(method, url, id, data, callback) {
         url += "?id=" + id
         makeRequest(method, url, data, (obj) => {
             this.registry.add(obj)
@@ -168,5 +144,12 @@ class Session {
         this._filter(method, url, data, ids => {
             callback(new Recordset(method, url, this, data, ...ids));
         })
+    }
+
+    get(method, url, id, callback) {
+        if (this.registry.get(id))
+            callback(new Recordset(method, url, this, {id: id}, id));
+        else 
+            this.filter(method, url, {id: id}, callback);
     }
 }
