@@ -24,14 +24,14 @@
     <script>
         let session = new Session();
         let feed = document.createElement("sga-feed");
-        // session.filter("GET", "/article", {}, record => {
-        //     feed.bind(record);
-        //     feed.render();
-        // })
-        session.update("POST", "/article", 1, {title: "Testando", text: "testando", authorName: "teste"}, (record) => {
+        session.filter("GET", "localhost:8000/article", {id: 1}, record => {
             feed.bind(record);
             feed.render();
         })
+        // session.update("POST", "/article", 1, {title: "Testando", text: "testando", authorName: "teste"}, (record) => {
+        //     feed.bind(record);
+        //     feed.render();
+        // })
         // feed.setArticles([
         //     newArticle({
         //         title: "Contratações Públicas", 

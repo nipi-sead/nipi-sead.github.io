@@ -1,30 +1,19 @@
-// function makeRequest(method, url, body, callback) {
-//     let req = new XMLHttpRequest()
-//     req.open(method, url, true)
-//     let token = localStorage.getItem("token")
-//     if (token) {
-//         req.setRequestHeader("Authorization", "Bearer " + token)
-//     }
-    
-//     req.setRequestHeader("Accept", "application/json")
-//     req.onload = () => {
-//         callback(JSON.parse(req.response))
-//     }
-
-//     req.send(JSON.stringify(body))
-// }
-
 function makeRequest(method, url, body, callback) {
-    callback({
-        id: 1,
-        title: "Suprimento de fundos",
-        text: "Descrição:\n" +
-        "Despesa urgente e de pronto pagamento.\n"+
-        "Objetivo:\n" +
-        "Atender as necessidade de com despesas de caráter urgente da SEAD.",
-        authorName: "Laércio Pinheiro",
-    })
+    let req = new XMLHttpRequest()
+    req.open(method, url, true)
+    let token = localStorage.getItem("token")
+    if (token) {
+        req.setRequestHeader("Authorization", "Bearer " + token)
+    }
+    
+    req.setRequestHeader("Accept", "application/json")
+    req.onload = () => {
+        callback(JSON.parse(req.response))
+    }
+
+    req.send(JSON.stringify(body))
 }
+
 
 class Registry {
     
@@ -147,9 +136,13 @@ class Session {
     }
 
     get(method, url, id, callback) {
-        if (this.registry.get(id))
+        if (this.registry.get(id)) {
             callback(new Recordset(method, url, this, {id: id}, id));
-        else 
-            this.filter(method, url, {id: id}, callback);
+        } else {
+            makeRequest(method, url, {id: id}, (obj) => {
+                this.registry.add(obj);
+                callback(new Recordset(method, url, this, {id: id}, obj.id));
+            });
+        } 
     }
 }
